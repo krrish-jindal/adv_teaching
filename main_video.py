@@ -13,10 +13,11 @@ ld = Line_detection()
 sfr.load_encoding_images("training images/")
 
 
-file_name = input('Please enter the name of the Lecture to be recorded')
+file_name = input('Please enter the name of the Lecture to be recorded:     ')
 
 # Load Camera
 cap = cv2.VideoCapture(0)
+# cap.set(cv2.CAP_PROP_FPS, 60)
 
 if (cap.isOpened() == False): 
     print("Error reading from camera source")
@@ -30,12 +31,15 @@ port ="/dev/ttyUSB0"
 pin=9
 board =Arduino(port)
 board.digital[pin].mode=SERVO
+board.digital[pin].write(90)
+
+angle=90
 while (cap.isOpened()):
     # read from camera
     ret, frame = cap.read()
 
     if ret==True:
-        frame = cv2.flip(frame,0)
+        # frame = cv2.flip(frame,0)
 
         # write the flipped frame
         out.write(frame)
@@ -44,9 +48,17 @@ while (cap.isOpened()):
         face_locations, face_names = sfr.detect_known_faces(frame)
         for face_loc, name in zip(face_locations, face_names):
             y1, x2, y2, x1 = face_loc[0], face_loc[1], face_loc[2], face_loc[3]
+            # board.digital[pin].write(sub)
 
-            sub = (int(frame.shape[1]/2)) - int((x1 + x2)/2)
-            board.digital[pin].write(sub)
+            sub = -(((int(frame.shape[1]/2)) - int((x1 + x2)/2))/5)
+            #angle=int(90-sub)
+            if sub > 5:
+                angle = angle - 5
+            if sub < -5:
+                angle = angle + 5
+            # board.digital[pin].write(160)
+            print(angle)
+            board.digital[pin].write(angle)
             # arduino.write(bytes(sub, 'utf-8'))
             time.sleep(0.05)
 

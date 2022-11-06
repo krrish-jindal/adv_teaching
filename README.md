@@ -1,7 +1,4 @@
 # adv_teach
-
-the required shot and make notes by themselves
-
 Our Idea is to develop a model to create a one-stop solution to encounter all these problems and make teacher's life a bit easier by doing all the redundant tasks for them to let them focus on the important teaching stuff...
 Our Project constitutes of 3 different modules - 
 
@@ -13,4 +10,20 @@ sudo apt install python3-pyaudio
 pip install nlpcloud
 pip install pyttsx3
 pip install SpeechRecognition
+pip install face_recognition
+ pip install mediapipe
+
+
+```
+## To run motion detection
+```bash
+python3 main_video.py
+```
+## For making voice2text notes
+```bash
+python3 audioText.py
+```
+## For taking screnshoot
+```bash
+python3 SS.py
 ```
