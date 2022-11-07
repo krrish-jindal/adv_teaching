@@ -4,6 +4,7 @@ from line import Line_detection
 # import serial
 # from serial import Serial
 import time
+from time import sleep
 
 from pyfirmata import Arduino ,SERVO ,util
 
@@ -35,6 +36,7 @@ board.digital[pin].write(90)
 
 angle=90
 while (cap.isOpened()):
+    sleep(0.1)
     # read from camera
     ret, frame = cap.read()
 
@@ -52,10 +54,12 @@ while (cap.isOpened()):
 
             sub = -(((int(frame.shape[1]/2)) - int((x1 + x2)/2))/5)
             #angle=int(90-sub)
-            if sub > 5:
-                angle = angle - 5
-            if sub < -5:
-                angle = angle + 5
+            if sub > 7:
+                if angle > 5:
+                    angle = angle - 3
+            if sub < -7:
+                if angle < 175:
+                    angle = angle + 3
             # board.digital[pin].write(160)
             print(angle)
             board.digital[pin].write(angle)
