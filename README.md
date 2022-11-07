@@ -27,3 +27,10 @@ python3 audioText.py
 ```bash
 python3 SS.py
 ```
+## Tech stacks
+- OpenCV
+- Mediapipe
+- TensorFlow
+- Bart Large CNN
+- NLP cloud 
+- Arduino
