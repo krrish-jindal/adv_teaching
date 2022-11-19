@@ -1,4 +1,7 @@
 # adv_teach
+
+the required shot and make notes by themselves
+
 Our Idea is to develop a model to create a one-stop solution to encounter all these problems and make teacher's life a bit easier by doing all the redundant tasks for them to let them focus on the important teaching stuff...
 Our Project constitutes of 3 different modules - 
 
@@ -6,31 +9,13 @@ Our Project constitutes of 3 different modules -
 - Develop a screenshot algorithm that detects the hand gestures made by the teacher in order to take screenshots of the desired area of the important stuff written on the whiteboard.
 - Create a python module that takes in the audio input while recording the video and converting it into speech-to-text output. Once the text is created, a speech-to-text algorithm is implemented on it and images taken by the teacher are placed in the appropriate position using Bart-Large-CNN API
 ```bash
+pip install pyfirmata
 sudo apt install python3-pyaudio
 pip install nlpcloud
 pip install pyttsx3
 pip install SpeechRecognition
-pip install face_recognition
- pip install mediapipe
-
-
+pip install playsound
+ pip install libespeak.so.1
+sudo apt install espeak
 ```
-## To run motion detection
-```bash
-python3 main_video.py
-```
-## For making voice2text notes
-```bash
-python3 audioText.py
-```
-## For taking screnshoot
-```bash
-python3 SS.py
-```
-## Tech stacks
-- OpenCV
-- Mediapipe
-- TensorFlow
-- Bart Large CNN
-- NLP cloud 
-- Arduino
+__note__ if pyaudio not able to install then go to https://stackoverflow.com/questions/20023131/cannot-install-pyaudio-gcc-error

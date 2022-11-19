@@ -17,6 +17,8 @@ sfr.load_encoding_images("training images/")
 file_name = input('Please enter the name of the Lecture to be recorded:     ')
 
 # Load Camera
+# cap = cv2.VideoCapture('rtsp://192.168.29.184:4747/video')
+
 cap = cv2.VideoCapture(0)
 # cap.set(cv2.CAP_PROP_FPS, 60)
 
@@ -56,7 +58,7 @@ while (cap.isOpened()):
             #angle=int(90-sub)
             if sub > 7:
                 if angle > 5:
-                    angle = angle - 3
+                    angle =angle - 3
             if sub < -7:
                 if angle < 175:
                     angle = angle + 3

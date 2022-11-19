@@ -3,6 +3,7 @@ import pyttsx3
 import nlpcloud
 from time import sleep
 import re
+from playsound import playsound
 
 
 class Audio_Handler:
@@ -23,31 +24,41 @@ class Audio_Handler:
         print("Hi, Welcome to Teach it. Your Personal Teaching assistant \n ")
         #print("- Please Say Start Lecture to start recording \n ")
         #print("- Please Say Finish Lecture to stop recording \n ")
-        print("Recording from File")
         self.SpeakText("Hi, Welcome to Teach it. Your Personal Teaching assistant")
         sleep(0.7)
         #self.SpeakText("Please Say Start Lecture to start recording")
         #sleep(0.7)
         #self.SpeakText("Please Say Finish Lecture to stop recording")
-        self.SpeakText("Please wait, Recording From File")
+        print("\n \n Please wait, Recording from File...\n ")
+        self.SpeakText("Playing test audio file")
+        sleep(0.7)
+        self.SpeakText("Recording from file")
 
 
     def speech_to_text(self):
 
         i = 0
 
+        self.StartTeachIT()
+
         self.text_file = open("sample.html", "w")
+        playsound('test2.wav')
+
+        sleep(0.7)
+        self.SpeakText("Recording finished, initiating speech to text")
+        print("Recording finished, Please wait, initiating speech to text")
+
         while (1):
             try:
                 #with sr.Microphone() as source2:
-                with sr.AudioFile('test.wav') as source2:
+                with sr.AudioFile('test2.wav') as source2:
                 
                     #self.recognizer.adjust_for_ambient_noise(source2, duration=0.2)
                     audio2 = self.recognizer.listen(source2)
 
-                    if i == 0:
-                        self.StartTeachIT()
-                    i = i+1
+                    # if i == 0:
+                    #     self.StartTeachIT()
+                    # i = i+1
                         
                     MyText = self.recognizer.recognize_google(audio2)
 
